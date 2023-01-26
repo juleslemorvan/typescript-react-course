@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRef, useState } from "react";
+import { MessagesInt } from "./model";
 
-function App() {
+
+const App = () => {
+
+const inputMessage = useRef<HTMLInputElement | null>(null)
+
+const [messData, setMessData] = useState<MessagesInt[]>([])
+
+const handleSubmit = (e:any) => {
+  e.preventDefault();
+
+ 
+
+  //logique d'envoie des données
+  (document.getElementById("inputMessage") as HTMLInputElement).value = "";
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <h2>Entrez un message</h2>
+     <form onSubmit={(e) => handleSubmit(e)}>
+      <input type="text" placeholder='entrez votre message' id='inputMessage' ref={inputMessage} />
+      <input type="submit" value="Envoyer" />
+     </form>
+     <h2>Liste des messages</h2>
+     <div>{messData}</div>
     </div>
   );
-}
+};
 
 export default App;
