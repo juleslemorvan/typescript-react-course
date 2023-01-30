@@ -25,7 +25,11 @@ const handleSubmit = (e:any) => {
       <input type="submit" value="Envoyer" />
      </form>
      <h2>Liste des messages</h2>
-     <div>{messData}</div>
+   <div>
+  {messData.map((data, index) => (
+    <div key={index}>{data.message}</div>
+  ))}
+</div>
     </div>
   );
 };
